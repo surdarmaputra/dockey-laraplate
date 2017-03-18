@@ -1,0 +1,20 @@
+{
+  "name": "docky-laraplate",
+  "description": "Simple laravel project boilerplate that supports docker compose for development environment",
+  "main": "index.php",
+  "authors": [
+    "sdarmaputra <surya.igede@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "docker",
+    "docker-compose",
+    "boilerplate"
+  ],
+  "homepage": "-",
+  "ignore": [
+    "node_modules",
+    "public/supports"
+  ]
+}

@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  webserver:
+    build:
+      context: ./compose/webserver
+      dockerfile: webserver.dockerfile
+    volumes:
+      -  ./:/var/www
+    ports:
+      - "21000:80"
+    links:
+      - phpfpm
+  phpfpm:
+    build:
+      context: ./compose/phpfpm
+      dockerfile: phpfpm.dockerfile
+    volumes:
+      -  ./:/var/www
