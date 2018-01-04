@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class UserController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.index', ['users' => $users]);
+        $permissions = Permission::all();
+        return view('permissions.index', ['permissions' => $permissions]);
     }
 
     /**
@@ -28,7 +27,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('users.create', ['roles' => $roles]);
+        return view('permissions.create', ['roles' => $roles]);
     }
 
     /**
@@ -40,23 +39,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:120',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name' => 'required|max:40',
         ]);
 
-        $user = User::create($request->only('email', 'name', 'password'));
-        
+        $permission = Permission::create($request->only('name'));
+       
         $roles = $request['roles'];
         if (isset($roles)) {
             foreach ($roles as $inputRole) {
-                $role = Role::where(['id' => $inputRole])->firstOrFail();
-                $user->assignRole($role);
+                $role = Role::where(['id' => $inputRole])->findOrFail();
+                $role->givePermissionTo($permission);
             }
         }
 
-        return redirect()->route('users.index')
-            ->with('flash_message', 'User successfully added.');
+        return redirect()->route('permissions.index')
+            ->with('flash_message', 'Permission '.$permission->name.' added.');
     }
 
     /**
@@ -67,7 +64,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return redirect('users');
+        return redirect('permissions');
     }
 
     /**
@@ -78,13 +75,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        $roles = Role::all();
-
-        return view('users.edit', [
-            'user' => $user,
-            'roles' => $roles,
-        ]);
+        $permission = Permission::findOrFail($id);
+        return view('permissions.edit', ['permission' => $permission]);
     }
 
     /**
@@ -96,24 +88,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $permission = Permission::findOrFail($id);
         $this->validate($request, [
-            'name' => 'required|max:120',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'required|min:6|confirmed',
+            'name' => 'required|max:40',
         ]);
-       
-        $user->fill($request->only('name', 'email', 'password'))->save();
 
-        $roles = $request['roles'];
-        if (isset($roles)) {
-            $user->roles()->sync($roles);
-        } else {
-            $user->roles()->detach();
-        }
-
-        return redirect()->route('users.index')
-            ->with('flash_message', 'User successfully edited.');
+        $permission->fill($request->only('name'))->save();
+        return redirect()->route('permissions.index')
+            ->with('flash_message', 'Permission '.$permission->name.' updated.');
     }
 
     /**
@@ -124,10 +106,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('users.index')
-            ->with('flash_message', 'User successfully deleted.');
+        $permission = Permission::findOrFail($id);
+        $deletedPermissionName = $permission->name;
+        $permission->delete();
+        return redirect()->route('permissions.index')
+            ->with('flash_message', 'Permission '.$deletedPermissionName.' deleted');
     }
 }
