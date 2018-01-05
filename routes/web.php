@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-Route::resource('users', 'UserController');
-Route::resource('permissions', 'PermissionController');
-Route::resource('roles', 'RoleController');
+Route::group(['prefix' => 'dashboard'], function() {
+    Route::get('/', 'Dashboard\HomeController@index');
+    Route::group(['prefix' => 'user-administrations'], function() {
+        Route::resource('users', 'Dashboard\UserController');
+        Route::resource('permissions', 'Dashboard\PermissionController');
+        Route::resource('roles', 'Dashboard\RoleController');
+    });
+});
