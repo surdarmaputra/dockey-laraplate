@@ -1,43 +1,62 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', '| Users')
 
 @section('content')
-    <div class="col-lg-10">
-        <h1>
-            <i class="fa fa-users">User Administration
-            <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a>
-        </h1>
-
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>                        
-                        <th>Date/Time Added</th>                        
-                        <th>User Roles</th>                        
-                        <th>Operations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach  ($users as $user)
-                        <tr>
-                            <td>{{ $user->name }}</td>           
-                            <td>{{ $user->email }}</td>           
-                            <td>{{ $user->created_at->format('F d, Y h:ia') }}</td>           
-                            <td>{{ $user->roles()->pluck('name')->implode(' ') }}</td>           
-                            <td>
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-                                {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id] ]) !!}
-                                   {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                                {!! Form::close() !!}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <a href="{{ route('users.create') }}" class="btn btn-success">New User</a>
+    <div class="container-fluid">
+        <h4 class="c-grey-900 mT-10 mB-30">
+            <i class="fa fa-users icon-left"></i>User Administration
+            <a href="{{ route('users.create') }}" class="btn btn-outline-primary pull-right">
+                <i class="fa fa-plus icon-left"></i>New User
+            </a>
+        </h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                    <table id="dataTable" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>                        
+                                <th>Date/Time Added</th>                        
+                                <th>User Roles</th>                        
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>                        
+                                <th>Date/Time Added</th>                        
+                                <th>User Roles</th>                        
+                                <th>Operations</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach  ($users as $user)
+                                <tr>
+                                    <td>{{ $user->name }}</td>           
+                                    <td>{{ $user->email }}</td>           
+                                    <td>{{ $user->created_at->format('F d, Y h:ia') }}</td>           
+                                    <td>{{ $user->roles()->pluck('name')->implode(' ') }}</td>           
+                                    <td>
+                                        <div class="gap-5 peers">
+                                            <div class="peer">
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-info">Edit</a>
+                                            </div>
+                                            <div class="peer">
+                                                {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id] ]) !!}
+                                                    {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-outline-danger']) !!}
+                                                 {!! Form::close() !!}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
