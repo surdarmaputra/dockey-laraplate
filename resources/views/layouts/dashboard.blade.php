@@ -71,13 +71,14 @@
         }
     </style>
     <link href="{{ asset('style.css') }}" rel="stylesheet">
+    @stack('customStyles')
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
 </head>
-<body class="app">
+<body class="app is-collapsed">
     <div id="loader">
         <div class="spinner"></div>
     </div>
@@ -113,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-                @include('layouts.sidebar')
+                @include('layouts.dashboard.sidebar')
             </div>
         </div>
         <div class="page-container">
@@ -127,8 +128,8 @@
                         </li>
                     </ul>
                     <ul class="nav-right">
-                        @include('layouts.notifications')
-                        @include('layouts.account')
+                        @include('layouts.dashboard.notifications')
+                        @include('layouts.dashboard.account')
                     </ul>
                 </div>
             </div>
@@ -142,5 +143,11 @@
     </div>
     <script src="{{ asset('vendor.js') }}"></script>    
     <script src="{{ asset('bundle.js') }}"></script>
+    @stack('customScripts')
+    <script>
+        window.onload = function() {
+            @stack('windowOnloadFunctions')
+        }
+    </script>
 </body>
 </html>

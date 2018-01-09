@@ -17,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('roles.index', compact('roles'));
+        return view('dashboard.roles.index', compact('roles'));
     }
 
     /**
@@ -28,7 +28,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all();
-        return view('roles.create', compact('permissions'));
+        return view('dashboard.roles.create', compact('permissions'));
     }
 
     /**
@@ -78,7 +78,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
 
-        return view('roles.edit', compact('role', 'permissions'));
+        return view('dashboard.roles.edit', compact('role', 'permissions'));
     }
 
     /**

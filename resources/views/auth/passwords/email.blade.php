@@ -1,46 +1,40 @@
-@extends('layouts.app')
+@extends('layouts.specialPage')
+
+@section('title', '| Reset Password')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <div class="peers ai-s fxw-nw h-100vh">
+        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style="background-image:url({{ asset('assets/static/images/bg.jpg') }})">
+            <div class="pos-a centerXY">
+                <div class="bgc-white bdrs-50p pos-r" style="width:120px;height:120px"><img class="pos-a centerXY" src="{{ asset('assets/static/images/logo.png') }}" alt=""></div>
             </div>
         </div>
+        <div class="col-12 col-md-4 peer pX-80 pY-80 h-100 bgc-white scrollable pos-r" style="min-width:320px">
+            <h4 class="fw-300 c-grey-900 mB-40 text-center">Reset Password</h4>
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <form method="POST" action="{{ route('password.email') }}">
+                {{ csrf_field() }}
+
+                <div class="form-group">
+                    <label for="email" class="text-normal text-dark">E-mail</label>
+                    <input id="email" type="email" name="email" class="form-control" placeholder="E-mail" value="{{ old('email') }}" autofocus required>
+                </div>
+                <div class="form-group">
+                    @include('layouts.utils.errorMessages')
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-primary btn-block">Send Password Reset Link</button>
+                </div>
+                <div class="form-group text-center mT-50">
+                    <div>Need something else?</div>
+                    <a href="{{ route('login') }}">Login</a> or 
+                    <a href="{{ route('register') }}">Register</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 @endsection

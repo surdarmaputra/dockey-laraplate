@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="c-grey-900 mT-10 mB-30">
+        <h4 class="c-grey-700 mT-10 mB-30">
             <i class="fa fa-users icon-left"></i>User Administration
             <a href="{{ route('users.create') }}" class="btn btn-outline-primary pull-right">
                 <i class="fa fa-plus icon-left"></i>New User
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                    <table id="dataTable" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                    <table id="dataTable" class="table table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>Name</th>

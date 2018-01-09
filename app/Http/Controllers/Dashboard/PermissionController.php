@@ -17,7 +17,7 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all();
-        return view('permissions.index', ['permissions' => $permissions]);
+        return view('dashboard.permissions.index', compact('permissions'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PermissionController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('permissions.create', ['roles' => $roles]);
+        return view('dashboard.permissions.create', compact('roles'));
     }
 
     /**
@@ -77,7 +77,7 @@ class PermissionController extends Controller
     public function edit($id)
     {
         $permission = Permission::findOrFail($id);
-        return view('permissions.edit', ['permission' => $permission]);
+        return view('dashboard.permissions.edit', compact('permission'));
     }
 
     /**

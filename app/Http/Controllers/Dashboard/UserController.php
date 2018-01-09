@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', ['users' => $users]);
+        return view('dashboard.users.index', compact('users'));
     }
 
     /**
@@ -29,7 +29,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('users.create', ['roles' => $roles]);
+        return view('dashboard.users.create', compact('roles'));
     }
 
     /**
@@ -82,10 +82,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::all();
 
-        return view('users.edit', [
-            'user' => $user,
-            'roles' => $roles,
-        ]);
+        return view('dashboard.users.edit', compact('user', 'roles'));
     }
 
     /**
