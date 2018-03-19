@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d950d5d8fbeec3104edbc8e844347c48",
+    "content-hash": "fade17f927b2af787bf53336e7867797",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -637,6 +637,51 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "kkszymanowski/traitor",
+            "version": "0.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KKSzymanowski/Traitor.git",
+                "reference": "05462468d0592545448f1a2877d045f5048abea1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KKSzymanowski/Traitor/zipball/05462468d0592545448f1a2877d045f5048abea1",
+                "reference": "05462468d0592545448f1a2877d045f5048abea1",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^1.0|^2.0|^3.0",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Traitor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kuba Szymanowski",
+                    "email": "kuba.szymanowski@inf24.pl"
+                }
+            ],
+            "description": "Add a trait use statement to existing PHP class",
+            "keywords": [
+                "add",
+                "php",
+                "trait"
+            ],
+            "time": "2017-08-28T11:34:42+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1439,46 +1484,48 @@
             "time": "2016-11-22T19:21:44+00:00"
         },
         {
-            "name": "spatie/laravel-permission",
-            "version": "2.7.8",
+            "name": "santigarcor/laratrust",
+            "version": "5.0.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "e63427e4c364061f05f03fc893727198669c43c7"
+                "url": "https://github.com/santigarcor/laratrust.git",
+                "reference": "526cc3e8970c35b97c71a7a6d8b63c2073568bb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/e63427e4c364061f05f03fc893727198669c43c7",
-                "reference": "e63427e4c364061f05f03fc893727198669c43c7",
+                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/526cc3e8970c35b97c71a7a6d8b63c2073568bb1",
+                "reference": "526cc3e8970c35b97c71a7a6d8b63c2073568bb1",
                 "shasum": ""
             },
             "require": {
-                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0",
-                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0",
-                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0",
-                "illuminate/database": "~5.4.0|~5.5.0",
-                "php": ">=7.0"
+                "illuminate/auth": "~5.2",
+                "illuminate/cache": "~5.2",
+                "illuminate/console": "~5.2",
+                "illuminate/database": "^5.2.32",
+                "illuminate/support": "~5.2",
+                "kkszymanowski/traitor": "^0.2.0",
+                "php": ">=5.5.9"
             },
             "require-dev": {
-                "monolog/monolog": "^1.22",
-                "orchestra/testbench": "~3.3.0|~3.4.2|~3.5.0",
-                "phpunit/phpunit": "^5.7|6.2"
+                "mockery/mockery": ">=0.9.9",
+                "orchestra/testbench": "~3.2",
+                "phpunit/phpunit": ">=4.1"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Spatie\\Permission\\PermissionServiceProvider"
-                    ]
+                        "Laratrust\\LaratrustServiceProvider"
+                    ],
+                    "aliases": {
+                        "Laratrust": "Laratrust\\LaratrustFacade"
+                    }
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Spatie\\Permission\\": "src"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
+                    "Laratrust\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1486,22 +1533,24 @@
             ],
             "authors": [
                 {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
+                    "name": "Santiago Garcia",
+                    "homepage": "http://santigarcor.me"
                 }
             ],
-            "description": "Permission handling for Laravel 5.4 and up",
-            "homepage": "https://github.com/spatie/laravel-permission",
+            "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
             "keywords": [
+                "Teams",
                 "acl",
+                "authorization",
+                "laratrust",
                 "laravel",
-                "permission",
-                "security",
-                "spatie"
+                "multiusers",
+                "permissions",
+                "php",
+                "rbac",
+                "roles"
             ],
-            "time": "2018-01-02T16:39:56+00:00"
+            "time": "2018-03-05T13:21:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2538,12 +2587,12 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
+                "url": "https://github.com/mockery/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },
