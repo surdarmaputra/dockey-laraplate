@@ -18,10 +18,20 @@
                             @include('dashboard.roles.form')
                             <div class="row gap-50">
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fa fa-plus icon-left"></i>
-                                        Add Role
-                                    </button>
+                                    <div class="gap-10 peers">
+                                        <div class="peer">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fa fa-plus icon-left"></i>
+                                                Save Role
+                                            </button>
+                                        </div>
+                                        <div class="peer">
+                                            <a class="btn btn-light" href="{{ route('roles.index') }}">
+                                                <i class="fa fa-arrow-left icon-left"></i>
+                                                Cancel
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {{ Form::close() }}

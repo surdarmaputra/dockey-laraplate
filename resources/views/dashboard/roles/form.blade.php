@@ -1,7 +1,21 @@
+@include('layouts.utils.errorMessages')
+
 <div class="form-group row">
-    {{ Form::label('name', 'Role Name', ['class' => 'col-sm-4 col-form-label']) }}
+    {{ Form::label('name', 'Role Name', ['class' => 'col-sm-4 col-form-label form-label--required']) }}
     <div class="col-sm-8">
         {{ Form::text('name', null, ['class' => 'form-control']) }}
+    </div>
+</div>
+<div class="form-group row">
+    {{ Form::label('display_name', 'Display Name', ['class' => 'col-sm-4 col-form-label']) }}
+    <div class="col-sm-8">
+        {{ Form::text('display_name', null, ['class' => 'form-control']) }}
+    </div>
+</div>
+<div class="form-group row">
+    {{ Form::label('description', 'Description', ['class' => 'col-sm-4 col-form-label']) }}
+    <div class="col-sm-8">
+        {{ Form::text('description', null, ['class' => 'form-control']) }}
     </div>
 </div>
 <div class="form-group row">
@@ -22,5 +36,3 @@
         @endforelse
     </div>
 </div>
-
-@include('layouts.utils.errorMessages')

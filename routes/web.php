@@ -17,11 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
-    Route::get('/', 'Dashboard\HomeController@index');
-    Route::group(['prefix' => 'user-administrations'], function() {
-        Route::resource('users', 'Dashboard\UserController');
-        Route::resource('permissions', 'Dashboard\PermissionController');
-        Route::resource('roles', 'Dashboard\RoleController');
+Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'auth'], function() {
+    Route::get('/', 'HomeController@index');
+    Route::group(['prefix' => 'user-administrations', 'namespace' => 'UserAdministrations'], function() {
+        Route::resource('users', 'UsersController');
+        Route::resource('permissions', 'PermissionController');
+        Route::resource('roles', 'RolesController');
     });
 });
