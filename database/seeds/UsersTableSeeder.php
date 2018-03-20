@@ -12,9 +12,12 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $admin = factory(App\User::class)->create([
-            'name' => 'admin',
+            'username' => 'admin',
+            'full_name' => 'Administrator',
             'email' => 'admin@dockeylaraplate.io',
-            'password' => 'secret'
+            'password' => 'secret',
+            'built_in' => 1,
+            'active' => 1,
         ]);
     }
 }
