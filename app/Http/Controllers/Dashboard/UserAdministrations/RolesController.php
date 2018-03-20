@@ -41,8 +41,8 @@ class RolesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|alpha_dash|unique:roles|max:50',
-            'display_name' => 'nullable|string',
-            'description' => 'nullable|string',
+            'display_name' => 'nullable|string|max:150',
+            'description' => 'nullable|string|max:150',
             'permissions' => 'required',
         ]);
 
@@ -55,7 +55,7 @@ class RolesController extends Controller
         }
 
         return redirect()->route('roles.index')
-            ->with('flash_message', 'Role '.$role->name.' added.');
+            ->with('flash_message', 'Role '.$role->name.' successfully created.');
     }
 
     /**
@@ -95,8 +95,8 @@ class RolesController extends Controller
         $role = Role::findOrFail($id);
         $this->validate($request, [
             'name' => 'required|alpha_dash|unique:roles,name,'.$id.'|max:50',
-            'display_name' => 'nullable|string',
-            'description' => 'nullable|string',
+            'display_name' => 'nullable|string|max:150',
+            'description' => 'nullable|string|max:150',
             'permissions' => 'required',
         ]);
 
@@ -104,7 +104,7 @@ class RolesController extends Controller
         $role->permissions()->sync($request['permissions']);
 
         return redirect()->route('roles.edit', $id)
-            ->with('flash_message', 'Role '.$role->name.' updated.');
+            ->with('flash_message', 'Role '.$role->name.' successfully updated.');
     }
 
     /**
