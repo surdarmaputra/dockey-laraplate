@@ -13,6 +13,23 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function() {
+    Route::group(['prefix' => 'basic'], function() {
+        Route::post('success', 'BasicApiController@trySuccess');
+        Route::post('failure', 'BasicApiController@tryFailure');
+        Route::post('unauthorized', 'BasicApiController@tryUnauthorized');
+        Route::post('forbidden', 'BasicApiController@tryForbidden');
+        Route::post('not-found', 'BasicApiController@tryNotFound');
+        Route::post('invalid-parameters', 'BasicApiController@tryInvalidParameters');
+        Route::post('custom', 'BasicApiController@tryCustom');
+    });
+    Route::group(['prefix' => 'encapsulated'], function() {
+        Route::post('success', 'EncapsulatedApiController@trySuccess');
+        Route::post('failure', 'EncapsulatedApiController@tryFailure');
+        Route::post('unauthorized', 'EncapsulatedApiController@tryUnauthorized');
+        Route::post('forbidden', 'EncapsulatedApiController@tryForbidden');
+        Route::post('not-found', 'EncapsulatedApiController@tryNotFound');
+        Route::post('invalid-parameters', 'EncapsulatedApiController@tryInvalidParameters');
+        Route::post('custom', 'EncapsulatedApiController@tryCustom');
+    });
 });
