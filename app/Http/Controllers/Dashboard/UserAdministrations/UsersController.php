@@ -23,7 +23,7 @@ class UsersController extends Controller
             if (count($roles) > 0) {
                 $users = [];
                 foreach ($roles as $role) {
-                    foreach ($role->user as $user) {
+                    foreach ($role->users as $user) {
                         array_push($users, $user);
                     }
                 }
@@ -151,7 +151,7 @@ class UsersController extends Controller
             $user->delete();
             $message = 'User successfully deleted.';
         } else {
-            $message = 'Built-in user can not be deleted.';
+            $message = 'Built-in user should not be deleted.';
         }
        
         return redirect()->route('users.index')

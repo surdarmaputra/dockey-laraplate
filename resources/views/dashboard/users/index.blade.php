@@ -38,7 +38,7 @@
                                 <th>Email</th>                        
                                 <th>Roles</th>                        
                                 <th>Created</th>
-                                <th>Actions</th>
+                                <th>Operations</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -49,7 +49,7 @@
                                 <th>Email</th>                        
                                 <th>Roles</th>                        
                                 <th>Created</th>
-                                <th>Actions</th>
+                                <th>Operations</th>
                             </tr>
                         </tfoot>
                         <tbody>
