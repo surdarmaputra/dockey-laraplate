@@ -21,8 +21,8 @@
                                     <div class="gap-10 peers">
                                         <div class="peer">
                                             <button class="btn btn-primary" type="submit">
-                                                <i class="fa fa-check icon-left"></i>
-                                                Save Changes
+                                                <i class="fa fa-plus icon-left"></i>
+                                                Save User
                                             </button>
                                         </div>
                                         <div class="peer">
