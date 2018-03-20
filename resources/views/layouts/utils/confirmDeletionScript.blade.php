@@ -1,3 +1,4 @@
+@push('customScripts')
 <script>
     function confirmDeletion(event) {
         event.preventDefault();
@@ -12,3 +13,4 @@
         })
     }
 </script>
+@endpush
