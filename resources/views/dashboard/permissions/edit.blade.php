@@ -10,11 +10,6 @@
                     <i class="fa fa-pencil-square-o icon-left"></i>Edit Permission
                     <div class="pull-right peers gap-10">
                         <div class="peer">
-                            <a href="{{ route('permissions.create') }}" class="btn btn-outline-primary">
-                                <i class="fa fa-plus icon-left"></i>New Permission
-                            </a>
-                        </div>
-                        <div class="peer">
                             <a href="{{ route('permissions.index') }}" class="btn btn-outline-primary peer">
                                 <i class="fa fa-list icon-left"></i>List of Permissions
                             </a>
@@ -27,10 +22,20 @@
                             @include('dashboard.permissions.form')
                             <div class="row gap-50">
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fa fa-check icon-left"></i>
-                                        Save Changes
-                                    </button>
+                                    <div class="gap-10 peers">
+                                        <div class="peer">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fa fa-check icon-left"></i>
+                                                Save Changes
+                                            </button>
+                                        </div>
+                                        <div class="peer">
+                                            <a class="btn btn-light" href="{{ route('permissions.index') }}">
+                                                <i class="fa fa-arrow-left icon-left"></i>
+                                                Cancel
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {{ Form::close() }}
