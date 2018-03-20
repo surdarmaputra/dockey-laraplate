@@ -49,6 +49,15 @@
         "prepare-initial-data": [
             "php artisan migrate:refresh",
             "php artisan db:seed"
+        ],
+        "test": [
+            "phpunit --color=always --verbose"
+        ],
+        "test-testdox": [
+            "phpunit --color=always --verbose --testdox"
+        ],
+        "test-standalone": [
+            "phpunit --color=always --verbose --configuration phpunit-standalone.xml"
         ]
     },
     "config": {
