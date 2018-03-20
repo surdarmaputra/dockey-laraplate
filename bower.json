@@ -16,5 +16,9 @@
   "ignore": [
     "node_modules",
     "public/supports"
-  ]
+  ],
+  "dependencies": {
+    "pikaday": "^1.6.1",
+    "sweetalert": "^2.1.0"
+  }
 }
