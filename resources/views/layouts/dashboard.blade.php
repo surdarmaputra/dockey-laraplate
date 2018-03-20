@@ -71,6 +71,7 @@
         }
     </style>
     <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="{{ asset('extend.css') }}" rel="stylesheet">
     @stack('customStyles')
     <script>
         window.Laravel = {!! json_encode([
@@ -143,6 +144,7 @@
     </div>
     <script src="{{ asset('vendor.js') }}"></script>    
     <script src="{{ asset('bundle.js') }}"></script>
+    <script src="{{ asset('supports/sweetalert/docs/assets/sweetalert/sweetalert.min.js') }}"></script>
     @stack('customScripts')
     <script>
         window.onload = function() {
