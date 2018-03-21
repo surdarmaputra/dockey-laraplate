@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', '| Edit Permission')
+@section('title', 'Edit Permission')
 
 @section('content')
     <div class="container-fluid">

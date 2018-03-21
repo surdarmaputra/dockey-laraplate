@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', '| New Role')
+@section('title', 'New Role')
 
 @section('content')
     <div class="container-fluid">

@@ -1,6 +1,6 @@
 @extends('layouts.specialPage')
 
-@section('title', '| Login')
+@section('title', 'Login')
 
 @section('content')
     <div class="peers ai-s fxw-nw h-100vh">
