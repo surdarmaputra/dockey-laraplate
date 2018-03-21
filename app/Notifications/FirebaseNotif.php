@@ -10,7 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use App\ThirdParties\Firebase\FirebasePushNotification;
 use App\Notifications\Channels\Firebase;
 
-class FirebasePushNotif extends Notification
+class FirebaseNotif extends Notification
 {
     use Queueable;
 
@@ -66,7 +66,7 @@ class FirebasePushNotif extends Notification
     {
         return [
             'channel' => 'Firebase Cloud Messaging',
-            'to' => $notifiable->token_firebase,
+            'to' => $notifiable->firebase_token,
             'notification' => [
                 'title' => $this->title,
                 'body' => $this->body,
@@ -83,7 +83,7 @@ class FirebasePushNotif extends Notification
      */
     public function toFirebase($notifiable)
     {
-        return new FirebasePushNotification($notifiable->token_firebase, $this->title, $this->body, $this->data);
+        return new FirebasePushNotification($notifiable->firebase_token, $this->title, $this->body, $this->data);
     }
 }
 
