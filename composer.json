@@ -46,10 +46,6 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
         ],
-        "prepare-initial-data": [
-            "php artisan migrate:refresh",
-            "php artisan db:seed"
-        ],
         "test": [
             "phpunit --color=always --verbose"
         ],
