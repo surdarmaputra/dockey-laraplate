@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function() {
+    Route::get('documentation', 'DocumentationController@index');
     Route::group(['prefix' => 'basic'], function() {
         Route::post('success', 'BasicApiController@trySuccess');
         Route::post('failure', 'BasicApiController@tryFailure');

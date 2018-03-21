@@ -1,0 +1,95 @@
+get:
+  tags:
+    - posts
+  summary: Get Posts
+  description: Get posts
+  operationId: getPosts
+  produces:
+    - application/json
+  parameters:
+    - in: query
+      name: fields
+      required: false
+      description: Selected field to be shown separated by comma
+    - in: query
+      name: sort
+      required: false
+      description: Column to be sorted separated by comma. Use (-) sign to choose descending order
+    - in: query
+      name: q
+      required: false
+      description: Text to be search
+  responses:
+    200:
+      description: 'Posts successfully retrieved.'
+      schema:
+        type: array
+        items:
+          $ref: '../../definitions.yaml#/definitions/Post'
+    401:
+      description: 'Unauthorized access.'
+      schema:
+        $ref: '../../commons/unauthorized.yaml'
+    403:
+      description: 'Forbidden.'
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            default: 'Forbidden.'
+post:
+  tags:
+    - posts
+  summary: Create Post
+  description: Create post
+  operationId: createPost
+  produces:
+    - application/json
+  parameters:
+    - in: body
+      name: body
+      description: Request payload body
+      required: true
+      schema:
+        $ref: '../../definitions.yaml#/definitions/NewPostRequest'
+  responses:
+    201:
+      description: 'Post successfully created.'
+      schema:
+        $ref: '../../definitions.yaml#/definitions/Post'
+    400:
+      description: 'Role name already exist. Please choose another name.'
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            default: 'Role name already exist. Please choose another name.'
+    401:
+      description: 'Unauthorized access.'
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            default: 'Unauthorized access.'
+    403:
+      description: 'Forbidden.'
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            default: 'Forbidden.'
+    422:
+      description: 'Unprocessable Entity.'
+      schema:
+        type: object
+        properties:
+          name:
+            type: array
+            default: []
+          display_name:
+            type: array
+            default: []
