@@ -19,10 +19,10 @@ class UsersController extends Controller
         $roles = Role::all();
         if ($request->has('role')) {
             $roleList = explode(',', $request->role);
-            $roles = Role::whereIn('name', $roleList)->orWhereIn('id', $roleList)->get();
-            if (count($roles) > 0) {
+            $selectedRoles = Role::whereIn('name', $roleList)->orWhereIn('id', $roleList)->get();
+            if (count($selectedRoles) > 0) {
                 $users = [];
-                foreach ($roles as $role) {
+                foreach ($selectedRoles as $role) {
                     foreach ($role->users as $user) {
                         array_push($users, $user);
                     }
