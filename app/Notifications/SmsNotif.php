@@ -10,11 +10,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 use App\Notifications\Channels\Sms;
 use App\ThirdParties\Sms\SmsNotification;
 
-class SmsNotificationExample extends Notification
+class SmsNotif extends Notification
 {
     use Queueable;
 
-    protected $phoneNumber;
     protected $message; 
     
     /**
@@ -22,9 +21,8 @@ class SmsNotificationExample extends Notification
      *
      * @return void
      */
-    public function __construct($phoneNumber = '', $message = '')
+    public function __construct($message = '')
     {
-        $this->phoneNumber = $phoneNumber;
         $this->message = $message;
     }
 
@@ -62,7 +60,7 @@ class SmsNotificationExample extends Notification
     public function toArray($notifiable)
     {
         return [
-            'phone_number' => $this->phoneNumber,
+            'phone_number' => $notifiable->phone_number,
             'message' => $this->message,
         ];
     }
@@ -75,6 +73,6 @@ class SmsNotificationExample extends Notification
      */
     public function toSms($notifiable)
     {
-        return new SmsNotification($this->phoneNumber, $this->message);
+        return new SmsNotification($notifiable->phone_number, $this->message);
     }
 }
