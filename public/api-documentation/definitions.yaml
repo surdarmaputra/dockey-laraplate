@@ -1,0 +1,38 @@
+definitions:
+  Post:
+    type: object
+    properties:
+      id:
+        type: number
+        description: Post ID.
+        example: 1
+      title:
+        type: string
+        description: Post title.
+        example: 'How to be Awesome'
+      content:
+        type: string
+        description: Post content.
+        example: 'Just be yourself :)'
+      created_at:
+        type: string
+        description: Creation time in timestamp format.
+        example: '2017-01-01 00:00:01'
+      updated_at:
+        type: string
+        description: Update time in timestamp format.
+        example: '2017-01-01 00:00:01'
+  NewPostRequest:
+    type: object
+    required:
+      - title
+      - content
+    properties:
+      title:
+        type: string
+        description: Post title.
+        example: 'How to be Awesome'
+      content:
+        type: string
+        description: Post content.
+        example: 'Just be yourself :)'

@@ -1,0 +1,86 @@
+swagger: '2.0'
+info:
+  title: API Documentation Example
+  description: |
+    This is an example of API documentation.
+  version: '1.0.0'
+host: 'localhost:21000'
+basePath: '/api/v1'
+schemes:
+  - http
+paths:
+  /posts:
+    get:
+      tags:
+        - posts
+      summary: Get Posts
+      description: Get posts
+      operationId: getPosts
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          required: false
+          description: Selected field to be shown separated by comma
+        - in: query
+          name: sort
+          required: false
+          description: Column to be sorted separated by comma. Use (-) sign to choose descending order
+        - in: query
+          name: q
+          required: false
+          description: Text to be search
+      responses:
+        200:
+          description: 'Posts successfully retrieved.'
+          schema:
+            type: array
+            items:
+              $ref: './definitions.yaml#/definitions/Post'
+        401:
+          description: 'Unauthorized access.'
+          schema:
+            $ref: './commons/unauthorized.yaml'
+        403:
+          description: 'Forbidden.'
+          schema:
+            $ref: './commons/forbidden.yaml'
+    post:
+      tags:
+        - posts
+      summary: Create Post
+      description: Create post
+      operationId: createPost
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Request payload body
+          required: true
+          schema:
+            $ref: './definitions.yaml#/definitions/NewPostRequest'
+      responses:
+        201:
+          description: 'Post successfully created.'
+          schema:
+            $ref: './definitions.yaml#/definitions/Post'
+        401:
+          description: 'Unauthorized access.'
+          schema:
+            $ref: './commons/unauthorized.yaml'
+        403:
+          description: 'Forbidden.'
+          schema:
+            $ref: './commons/forbidden.yaml'
+        422:
+          description: 'Unprocessable Entity.'
+          schema:
+            type: object
+            properties:
+              error:
+                type: array
+                items:
+                  type: string
+                  example: 'Title must be filled.'
