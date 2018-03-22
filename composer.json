@@ -46,6 +46,11 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
         ],
+        "initiate": [
+            "bower install",
+            "php artisan key:generate",
+            "php artisan project:fresh"
+        ],
         "test": [
             "phpunit --color=always --verbose"
         ],

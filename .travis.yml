@@ -1,0 +1,18 @@
+dist: trusty
+language: php
+php:
+  - 5.6
+services:
+  - mysql
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y libmcrypt-dev
+  - sudo apt-get install -y php-mcrypt php-mbstring php-tokenizer
+  - cp .env.travis .env
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+install:
+  - composer install
+before_script:
+  - composer initiate
+script:
+  - composer test
