@@ -5,10 +5,8 @@ php:
 services:
   - mysql
 before_install:
-  - sudo add-apt-repository universe
   - sudo apt-get update
   - sudo apt-get install -y libmcrypt-dev
-  - sudo apt-get install -y php-mcrypt php-mbstring php-tokenizer
   - cp .env.travis .env
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 install:
