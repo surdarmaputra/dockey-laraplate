@@ -9,6 +9,7 @@ before_install:
   - sudo apt-get install -y libmcrypt-dev
   - cp .env.travis .env
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - yarn global add bower
 install:
   - composer install
 before_script:
