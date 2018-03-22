@@ -7,7 +7,7 @@ services:
 before_install:
   - sudo apt-get update
   - sudo apt-get install -y libmcrypt-dev
-  - sudo apt-get install -y php-mcrypt php-mbstring php-tokenizer
+  - sudo apt-get install -y php5-mcrypt php5-mbstring php5-tokenizer
   - cp .env.travis .env
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 install:
