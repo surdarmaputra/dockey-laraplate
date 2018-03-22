@@ -1,0 +1,23 @@
+image: php:7.1
+
+services:
+  - mysql:latest
+
+variables:
+  MYSQL_DATABASE: test
+  MYSQL_ROOT_PASSWORD: test
+
+before_script:
+  - apt-get update -yqq
+  - apt-get install git libmcrypt-dev mysql-client -yqq
+  - apt-get install apt-utils -yqq
+  - apt-get install zlib1g-dev -yqq
+  - docker-php-ext-install mcrypt mbstring tokenizer pdo_mysql zip
+  - curl -sS https://getcomposer.org/installer | php
+  - cp .env.gitlab .env
+  - php composer.phar install
+  - php composer.phar initiate
+
+test:
+  script:
+    - php composer.phar test
