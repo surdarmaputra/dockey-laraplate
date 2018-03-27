@@ -36,6 +36,7 @@ Commonly used features included:
 - Download or clone the repository: `git clone https://github.com/sdarmaputra/dockey-laraplate.git`
 - Go to dockey-laraplate directory
 - Make a copy of .env.example to .env
+- Set database configuration inside `.env` file
 - Run `composer install`
 - Run `composer initiate`
 - Change some parts in file `compose/webserver/webserver.dockerfile` which labeled as `<your-user-name>` into your current user to tell nginx service to authorize your user as the owner of web server directory inside docker container
